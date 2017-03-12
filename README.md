@@ -1,5 +1,8 @@
 # MrPrintly
-MrPrintly.com API NodeJS Library
+MrPrintly.com API NodeJS Library (pre-release)
+
+## TODO
+Unit Tests, version bump to 1.0 on releae
 
 ## Installation
 Install via npm:
