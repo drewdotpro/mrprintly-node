@@ -16,7 +16,7 @@
     "api"
   ],
   "author": "Drew Llewellyn <drew@drew.pro> (http://drew.pro)",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/drewdotpro/mrprintly-node/issues"
   },
