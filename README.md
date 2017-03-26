@@ -83,11 +83,23 @@ return api.productVariantImage("456", "./save/here.jpg")
     });
 ```
 ### Design
-#### api.design(id)
+#### api.design(id, path)
+Writes a design PNG to the specified relative path
+```
+return api.design("789", "./images/789.png")
+    .then(() => {
+        console.log("file written");
+    })
+    .catch(e => {
+        console.error(e);
+    });
+```
+#### api.designInformation(id)
+Retrieves the meta information for a design
 ```
 return api.design("789")
-    .then(design => {
-       console.log(design);
+    .then(result => {
+        console.oog(result);
     })
     .catch(e => {
         console.error(e);

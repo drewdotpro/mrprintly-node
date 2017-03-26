@@ -103,7 +103,7 @@ module.exports = function (e, a) {
         assert(path, "You must provide a path");
         return new Promise((resolve, reject) => {
             const req = getOne("product/variant/image", id);
-            var stream = req
+            const stream = req
                 .pipe(fs.createWriteStream(path));
             stream.on('finish', () => {
                 return resolve(true);
@@ -114,10 +114,26 @@ module.exports = function (e, a) {
         });
     };
 
+    //Information for a single Design
+    const designInformation = (id) => {
+        assert(id, "You must provide an id");
+        return send({url: "design" + "/" + id, qs: {info: "true"}});
+    };
 
-    //Get a single design
-    const design = (id) => {
-        return getOne("design", id)
+    //Get a single design image
+    const design = (id, path) => {
+        assert(path, "You must provide a path");
+        return new Promise((resolve, reject) => {
+            const req = getOne("design", id);
+            const stream = req
+                .pipe(fs.createWriteStream(path));
+            stream.on('finish', () => {
+                return resolve(true);
+            });
+            req.catch(e => {
+                return reject(e);
+            });
+        });
     };
 
     //Get designs
@@ -127,10 +143,8 @@ module.exports = function (e, a) {
 
     // Create a design
     // A) From a file using the path parameter
-    // B) from an accessible url in body.url
+    // B) from an accessible url in body.designURL
     const createDesign = (body, path) => {
-        console.log(body);
-        console.log("start");
         if (path) {
             const req = send({
                 method: "POST",
@@ -230,6 +244,7 @@ module.exports = function (e, a) {
         productVariant,
         productVariantImage,
         design,
+        designInformation,
         designs,
         createDesign,
         designedProducts,
