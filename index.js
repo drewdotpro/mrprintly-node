@@ -115,16 +115,15 @@ module.exports = function (e, a) {
     };
 
     //Information for a single Design
-    const designInformation = (id) => {
-        assert(id, "You must provide an id");
-        return send({url: "design" + "/" + id, qs: {info: "true"}});
+    const design = (id) => {
+        return getOne("design", id);
     };
 
     //Get a single design image
-    const design = (id, path) => {
+    const designImage = (id, path) => {
         assert(path, "You must provide a path");
         return new Promise((resolve, reject) => {
-            const req = getOne("design", id);
+            const req = getOne("design/image", id);
             const stream = req
                 .pipe(fs.createWriteStream(path));
             stream.on('finish', () => {
@@ -244,7 +243,7 @@ module.exports = function (e, a) {
         productVariant,
         productVariantImage,
         design,
-        designInformation,
+        designImage,
         designs,
         createDesign,
         designedProducts,
